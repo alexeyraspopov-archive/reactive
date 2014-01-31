@@ -5,39 +5,49 @@ function startRecording(){
 	dependencies = [];
 }
 
+function record(cell){
+	if(recording){
+		dependencies.push(cell);
+	}
+}
+
 function stopRecording(){
 	recording = false;
 }
 
 function observable(data){
-	var observable, subscribers = [];
+	var cell, publish, subscribers = [];
 
-	observable = function(value){
+	publish = function(data){
+		subscribers.forEach(function(callback){
+			callback(data);
+		});
+	};
+
+	cell = function(value){
 		var changed;
 
 		if(arguments.length){
 			changed = data !== value;
 			data = value;
 
-			changed && subscribers.forEach(function(callback){
-				callback(data);
-			});
+			if(changed){
+				publish(data);
+			}
 		}
 
-		if(recording){
-			dependencies.push(observable);
-		}
+		record(cell);
 
 		return data;
 	};
 
-	observable.subscribe = function(callback){
+	cell.subscribe = function(callback){
 		subscribers.push(callback);
 
-		return observable;
+		return cell;
 	};
 
-	observable.unsubscribe = function(callback){
+	cell.unsubscribe = function(callback){
 		var index = subscribers.indexOf(callback);
 
 		if(index > -1){
@@ -45,11 +55,11 @@ function observable(data){
 		}
 	};
 
-	observable.peek = function(){
+	cell.peek = function(){
 		return data;
 	};
 
-	return observable;
+	return cell;
 }
 
 function computed(fn){
