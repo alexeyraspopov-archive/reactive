@@ -1,5 +1,6 @@
 module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-bump');
+	grunt.loadNpmTasks('grunt-karma');
 	grunt.loadNpmTasks('grunt-complexity');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -14,14 +15,19 @@ module.exports = function(grunt){
 				pushTo: 'origin'
 			}
 		},
+		karma: {
+			lib: {
+				configFile: 'karma.conf.js',
+			}
+		},
 		jshint: {
 			lib: {
-				src: 'index.js'
+				src: ['index.js', 'specs/*.js']
 			}
 		},
 		complexity: {
 			lib: {
-				src: 'index.js'
+				src: ['index.js', 'specs/*.js']
 			}
 		},
 		uglify: {
@@ -36,5 +42,5 @@ module.exports = function(grunt){
 		}
 	});
 
-	grunt.registerTask('default', ['jshint', 'complexity', 'uglify']);
+	grunt.registerTask('default', ['karma', 'jshint', 'complexity', 'uglify']);
 };
