@@ -1,7 +1,18 @@
-var dependencies = [];
+var dependencies = [], recording;
 
 function resetDependencies(){
+	recording = true;
 	dependencies = [];
+}
+
+function stopRecording(){
+	recording = false;
+}
+
+function record(observable){
+	if(recording){
+		dependencies.push(observable);
+	}
 }
 
 function publish(subscribers, data){
@@ -14,7 +25,6 @@ function publish(subscribers, data){
 function observable(data){
 	var cell, subscribers = [];
 
-	// subscribable?
 	cell = function(value){
 		var changed;
 
@@ -27,7 +37,7 @@ function observable(data){
 			}
 		}
 
-		dependencies.push(cell);
+		record(cell);
 
 		return data;
 	};
@@ -58,6 +68,7 @@ function computed(fn){
 
 	resetDependencies();
 	data(fn());
+	stopRecording();
 
 	dependencies.forEach(function(dependency){
 		dependency.subscribe(function(){
