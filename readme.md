@@ -1,5 +1,3 @@
 # Reactive
 
-## License
-
-[MIT License](http://en.wikipedia.org/wiki/MIT_License) (c) Alexey Raspopov
+tiny library for FRP values

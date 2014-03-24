@@ -1,23 +1,27 @@
 {
   "name": "reactive",
-  "version": "0.2.0",
-  "description": "Tiny library for FRP value",
+  "version": "0.3.0",
+  "description": "Tiny library for FRP values",
   "main": "index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/alexeyraspopov/reactive.git"
+  },
   "author": "Alexey Raspopov (https://github.com/alexeyraspopov)",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alexeyraspopov/reactive/issues"
+  },
+  "homepage": "https://github.com/alexeyraspopov/reactive",
   "devDependencies": {
-    "grunt-contrib-uglify": "~0.3.2",
-    "grunt": "~0.4.2",
-    "grunt-bump": "0.0.13",
-    "grunt-complexity": "~0.1.4",
-    "grunt-contrib-jshint": "~0.8.0",
-    "karma-script-launcher": "~0.1.0",
-    "karma-chrome-launcher": "~0.1.2",
-    "karma-firefox-launcher": "~0.1.3",
-    "karma-jasmine": "~0.1.5",
-    "karma-coffee-preprocessor": "~0.1.2",
-    "karma": "~0.10.9",
-    "grunt-karma": "~0.6.2",
-    "karma-ie-launcher": "~0.1.1"
+    "should": "^3.2.0-beta1",
+    "jshint-stylish": "^0.1.5",
+    "gulp-complexity": "^0.1.3",
+    "gulp": "^3.5.6",
+    "gulp-jshint": "^1.5.1",
+    "gulp-mocha": "^0.4.1"
   }
 }

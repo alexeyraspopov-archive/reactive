@@ -1,0 +1,17 @@
+{
+  "name": "reactive",
+  "main": "reactive.min.js",
+  "version": "0.2.0",
+  "description": "Tiny library for FRP value",
+  "authors": [
+    "Alexey Raspopov (https://github.com/alexeyraspopov)"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
