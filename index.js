@@ -24,8 +24,6 @@ exports.observable = function(value){
 		if(subscribers.indexOf(fn) < 0){
 			subscribers.push(fn);
 		}
-
-		return cell;
 	};
 
 	cell.unsubscribe = function(fn){
@@ -34,16 +32,12 @@ exports.observable = function(value){
 		if(index > -1){
 			subscribers.splice(index, 1);
 		}
-
-		return cell;
 	};
 
 	cell.notify = function(data){
 		subscribers.forEach(function(fn){
 			fn(data);
 		});
-
-		return cell;
 	};
 
 	return cell;
