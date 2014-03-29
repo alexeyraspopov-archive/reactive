@@ -77,6 +77,6 @@ describe('computed', function(){
 		});
 
 		observable(value);
-		computed().should.be.exactly(value);
+		expect(computed()).toBe(value);
 	});
 });
