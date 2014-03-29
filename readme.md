@@ -2,7 +2,7 @@
 
 **Work In Progress**
 
-Tiny library for FRP values
+Tiny library for FRP values. Based on [KnockoutJS](http://knockoutjs.com/) observables.
 
 ## Install
 
@@ -18,7 +18,7 @@ Tiny library for FRP values
 
 	computed(read);
 
- * `read`
+ * `read` - computable function
 
 ## Usage
 
