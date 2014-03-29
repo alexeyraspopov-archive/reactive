@@ -6,10 +6,7 @@
   "scripts": {
     "test": "gulp test"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/alexeyraspopov/reactive.git"
-  },
+  "repository": "alexeyraspopov/reactive",
   "author": "Alexey Raspopov (https://github.com/alexeyraspopov)",
   "license": "MIT",
   "bugs": {
