@@ -1,13 +1,12 @@
-/* global describe, it */
+/* global describe, it, expect */
 'use strict';
-var should, reactive;
+var reactive = require('./index');
 
-should = require('should');
-reactive = require('./index');
+// TODO: use spyOn instead of flags
 
 describe('observable', function(){
 	it('should be a function', function(){
-		reactive.observable().should.be.a.instanceOf(Function);
+		expect(reactive.observable() instanceof Function).toBeTruthy();
 	});
 
 	it('should save inital value', function(){
@@ -16,7 +15,7 @@ describe('observable', function(){
 		value = 13;
 		observable = reactive.observable(value);
 
-		observable().should.be.exactly(value);
+		expect(observable()).toBe(value);
 	});
 
 	it('should save value when called with argument', function(){
@@ -26,7 +25,7 @@ describe('observable', function(){
 		observable = reactive.observable();
 
 		observable(value);
-		observable().should.be.exactly(value);
+		expect(observable()).toBe(value);
 	});
 
 	it('should publish value for subscribers', function(){
@@ -43,8 +42,8 @@ describe('observable', function(){
 
 		observable(value);
 
-		wasCalled.should.be.exactly(true);
-		wasCalledWith.should.be.exactly(value);
+		expect(wasCalled).toBe(true);
+		expect(wasCalledWith).toBe(value);
 	});
 
 	it('should remove subscriber', function(){
@@ -63,6 +62,8 @@ describe('observable', function(){
 
 		observable(value);
 
-		wasCalled.should.be.exactly(false);
+		expect(wasCalled).toBe(false);
 	});
 });
+
+

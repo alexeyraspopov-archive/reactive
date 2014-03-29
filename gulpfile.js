@@ -3,7 +3,7 @@
 var gulp = require('gulp'),
 	jshint = require('gulp-jshint'),
 	complexity = require('gulp-complexity'),
-	mocha = require('gulp-mocha');
+	jasmine = require('gulp-jasmine');
 
 gulp.task('analysis', function(){
 	return gulp.src('*.js')
@@ -14,7 +14,7 @@ gulp.task('analysis', function(){
 
 gulp.task('test', function(){
 	return gulp.src('spec.js')
-		.pipe(mocha({ reporter: 'min' }));
+		.pipe(jasmine());
 });
 
 gulp.task('default', ['analysis', 'test']);
