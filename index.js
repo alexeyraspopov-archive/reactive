@@ -1,5 +1,22 @@
 'use strict';
 
+var deps, recording;
+
+function record(cell){
+	if(recording && deps.indexOf(cell) < 0){
+		deps.push(cell);
+	}
+}
+
+function startRecord(){
+	deps = [];
+	recording = true;
+}
+
+function stopRecord(){
+	recording = false;
+}
+
 exports.observable = function(value){
 	var cell, subscribers;
 
@@ -14,6 +31,8 @@ exports.observable = function(value){
 				cell.notify(value);
 			}
 		}
+
+		record(cell);
 
 		return value;
 	};
@@ -46,7 +65,15 @@ exports.observable = function(value){
 exports.computed = function(read){
 	var data = exports.observable();
 
+	startRecord();
 	read();
+	stopRecord();
+
+	deps.forEach(function(cell){
+		cell.subscribe(function(value){
+			data(value);
+		});
+	});
 
 	return data;
 };
