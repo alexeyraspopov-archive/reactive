@@ -16,10 +16,9 @@ Tiny library for FRP values
 
  * `value` - some initial data you want to wrap
 
-	computed(read[, write]);
+	computed(read);
 
  * `read`
- * `write`
 
 ## Usage
 
