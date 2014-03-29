@@ -14,7 +14,7 @@ gulp.task('analysis', function(){
 
 gulp.task('test', function(){
 	return gulp.src('spec.js')
-		.pipe(mocha());
+		.pipe(mocha({ reporter: 'min' }));
 });
 
 gulp.task('default', ['analysis', 'test']);
