@@ -42,3 +42,11 @@ exports.observable = function(value){
 
 	return cell;
 };
+
+exports.computed = function(read){
+	var data = exports.observable();
+
+	read();
+
+	return data;
+};

@@ -66,4 +66,17 @@ describe('observable', function(){
 	});
 });
 
+describe('computed', function(){
+	it('should register used observables', function(){
+		var value, observable, computed;
 
+		value = 13;
+		observable = reactive.observable();
+		computed = reactive.computed(function(){
+			return observable();
+		});
+
+		observable(value);
+		computed().should.be.exactly(value);
+	});
+});
