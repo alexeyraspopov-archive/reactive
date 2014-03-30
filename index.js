@@ -8,10 +8,9 @@ function record(cell){
 	}
 }
 
-function startRecord(start){
+function startRecord(){
 	deps = [];
 	recording = true;
-	start();
 }
 
 function getDeps(){
@@ -68,11 +67,12 @@ exports.observable = function(value){
 exports.computed = function(read){
 	var data = exports.observable();
 
-	startRecord(read);
+	startRecord();
+	data(read());
 
 	getDeps().forEach(function(cell){
-		cell.subscribe(function(value){
-			data(value);
+		cell.subscribe(function(){
+			data(read());
 		});
 	});
 

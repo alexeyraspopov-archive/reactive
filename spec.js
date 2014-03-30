@@ -68,15 +68,14 @@ describe('observable', function(){
 
 describe('computed', function(){
 	it('should register used observables', function(){
-		var value, observable, computed;
+		var value, observable, computed, read;
 
 		value = 13;
-		observable = reactive.observable();
-		computed = reactive.computed(function(){
-			return observable();
+		observable = reactive.observable(value);
+		computed = reactive.computed(read = function(){
+			return observable() + 2;
 		});
 
-		observable(value);
-		expect(computed()).toBe(value);
+		expect(computed()).toBe(read());
 	});
 });
