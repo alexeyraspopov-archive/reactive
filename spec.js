@@ -79,3 +79,22 @@ describe('computed', function(){
 		expect(computed()).toBe(read());
 	});
 });
+
+describe('extenders', function(){
+	it('should change notifier logic', function(){
+		var value, count, observable;
+
+		value = 13;
+		count = 0;
+		observable = reactive.observable().extend({ notify: 'always' });
+
+		observable.subscribe(function(){
+			count++;
+		});
+
+		observable(value);
+		observable(value);
+
+		expect(count).toBe(2);
+	});
+});

@@ -26,7 +26,7 @@ exports.observable = function(value){
 		var changed;
 
 		if(arguments.length){
-			changed = value !== newValue;
+			changed = cell.comparator(value, newValue);
 			value = newValue;
 
 			if(changed){
@@ -37,6 +37,10 @@ exports.observable = function(value){
 		record(cell);
 
 		return value;
+	};
+
+	cell.comparator = function(value, newValue){
+		return value !== newValue;
 	};
 
 	subscribers = [];
@@ -61,6 +65,16 @@ exports.observable = function(value){
 		});
 	};
 
+	cell.extend = function(options){
+		Object.keys(options).filter(function(key){
+			return exports.extenders.hasOwnProperty(key);
+		}).forEach(function(key){
+			exports.extenders[key](cell, options[key]);
+		});
+
+		return cell;
+	};
+
 	return cell;
 };
 
@@ -77,4 +91,12 @@ exports.computed = function(read){
 	});
 
 	return data;
+};
+
+exports.extenders = {
+	notify: function(cell, option){
+		cell.comparator = option === 'always' ? function(){
+			return true;
+		} : cell.comparator;
+	}
 };
