@@ -16,6 +16,8 @@ Tiny library for FRP values. Based on [KnockoutJS](http://knockoutjs.com/) obser
 
  * `value` - some initial data you want to wrap
 
+<!-- empty -->
+
 	computed(read);
 
  * `read` - computable function
