@@ -12,9 +12,9 @@ Tiny library for FRP values. Based on [KnockoutJS](http://knockoutjs.com/) obser
 
 ## API
 
-	observable([value]);
+	observable(value);
 
- * `value` - some initial data you want to wrap
+ * `value` (optional) - some initial data you want to wrap
 
 <!-- empty -->
 
