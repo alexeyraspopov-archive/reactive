@@ -1,6 +1,6 @@
 {
   "name": "reactive",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "tiny library for FRP values",
   "license": "MIT",
   "main": "index.js",
