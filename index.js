@@ -40,6 +40,8 @@ exports.observable = function(value){
 		return value;
 	};
 
+	cell.isObservable = true;
+
 	cell.comparator = function(value, newValue){
 		return value !== newValue;
 	};
