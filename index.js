@@ -63,9 +63,11 @@ exports.observable = function(value){
 	};
 
 	cell.notify = function(data){
-		subscribers.forEach(function(fn){
-			fn(data);
-		});
+		var index = 0, length = subscribers.length;
+
+		while(index < length){
+			subscribers[index++](data);
+		}
 	};
 
 	cell.extend = function(options){
